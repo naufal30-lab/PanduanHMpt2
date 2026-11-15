@@ -1,0 +1,17 @@
+{
+  "name": "BTN Farm Companion - Panduan Harvest Moon",
+  "short_name": "BTN Companion",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#e9e1c6",
+  "theme_color": "#315b3b",
+  "description": "Panduan Harvest Moon Back to Nature offline",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

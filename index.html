@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#315b3b"><meta name="description" content="Panduan Harvest Moon Back to Nature offline untuk Android">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg">
+<title>BTN Farm Companion</title>
+<style>
+:root{--green:#315b3b;--green2:#47794c;--cream:#f7f0d8;--paper:#fff9e9;--ink:#28352a;--gold:#e6bd59;--line:#d7c99f;--muted:#6d765f}
+*{box-sizing:border-box}body{margin:0;background:#e9e1c6;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:var(--green);color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:4;box-shadow:0 3px 10px #0002}
+.brand{font-weight:900;font-size:19px;letter-spacing:.3px}.sub{font-size:12px;opacity:.85;margin-top:3px}
+nav{display:flex;gap:7px;overflow:auto;padding:10px;background:#294c32;position:sticky;top:67px;z-index:3}
+nav button{white-space:nowrap;border:1px solid #91a88d;background:#ffffff12;color:#fff;border-radius:20px;padding:8px 12px;font-weight:700}
+nav button.active{background:var(--gold);color:#332d1b;border-color:var(--gold)}
+main{max-width:850px;margin:auto;padding:14px 12px 36px}.panel{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px;box-shadow:0 3px 0 #c8b98e}
+h1{font-size:22px;margin:0 0 8px}h2{font-size:17px;margin:0 0 10px;color:var(--green)}h3{font-size:14px;margin:12px 0 6px}
+p{line-height:1.45;margin:6px 0}.muted,.small{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{background:#f0e6c9;border:1px solid var(--line);border-radius:10px;padding:10px}.stat b{display:block;font-size:20px;color:var(--green)}
+button,.btn{cursor:pointer}.action{border:0;background:var(--green2);color:white;border-radius:9px;padding:10px 13px;font-weight:750}.secondary{background:#eee3c2;color:var(--ink);border:1px solid var(--line)}
+input,select,textarea{width:100%;padding:10px;border:1px solid #b8ad8b;border-radius:8px;background:white;color:var(--ink);font:inherit}
+label{font-size:13px;font-weight:700;display:block;margin:8px 0 4px}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+.check{display:flex;gap:9px;align-items:flex-start;padding:9px 2px;border-bottom:1px dashed var(--line);font-size:14px}.check input{width:18px;height:18px;flex:none;margin:1px 0}
+.progress{height:9px;background:#e5dcc1;border-radius:20px;overflow:hidden}.progress>i{display:block;height:100%;background:#6c9a55;width:0}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid var(--line);padding:8px 5px;text-align:left;vertical-align:top}th{color:var(--green)}
+.pill{display:inline-block;border-radius:20px;padding:3px 8px;background:#e8edda;color:#355d39;font-size:11px;font-weight:800;margin:2px}
+.daygrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.day{border:1px solid var(--line);background:#fffdf5;border-radius:7px;min-height:54px;padding:5px 3px;text-align:center;font-size:12px}.day b{display:block;font-size:14px}.day.event{background:#f9e6a8;border-color:#d5a63e}.day.selected{outline:3px solid var(--green2)}.day small{display:block;font-size:9px;line-height:1.1;margin-top:3px}
+.cardlist{display:grid;gap:8px}.item{padding:10px;border:1px solid var(--line);border-radius:9px;background:#fffdf5}.item strong{color:var(--green)}
+.hidden{display:none!important}.footer{text-align:center;font-size:11px;color:var(--muted);padding:14px}
+@media(min-width:650px){main{padding:20px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style></head>
+<body>
+<header><div class="brand">🌱 BTN FARM COMPANION</div><div class="sub">Panduan Harvest Moon: Back to Nature • Offline • Retro edition</div></header>
+<nav id="nav">
+<button data-tab="home" class="active">Beranda</button><button data-tab="daily">Checklist Harian</button><button data-tab="calendar">Kalender 360 Hari</button><button data-tab="crops">Tanaman</button><button data-tab="events">Festival & Event</button><button data-tab="people">Penduduk</button><button data-tab="reference">Referensi</button><button data-tab="goals">Target & Backup</button>
+</nav>
+<main>
+<section id="home" class="tab">
+<div class="panel"><h1>Selamat datang, Petani! 🌾</h1><p>Teman bermain untuk mengelola kebun selama 3 tahun. Tandai aktivitas, cek festival, catat uang, dan simpan progres di perangkat.</p><div class="grid">
+<div class="stat"><span class="small">Hari permainan</span><b id="homeDay">Spring 1 • Tahun 1</b></div>
+<div class="stat"><span class="small">Saldo tercatat</span><b id="homeMoney">0 G</b></div>
+<div class="stat"><span class="small">Checklist selesai</span><b id="homeDone">0%</b></div>
+<div class="stat"><span class="small">Festival terdekat</span><b id="homeFestival">—</b></div></div></div>
+<div class="panel"><h2>Mulai dari sini</h2><p>Atur tanggal permainan, lalu buka Checklist Harian untuk mencatat kegiatan hari itu.</p><div class="row"><button class="action" onclick="showTab('daily')">Buka checklist</button><button class="action secondary" onclick="showTab('calendar')">Lihat kalender</button></div></div>
+<div class="panel"><h2>Prioritas panduan</h2><ul><li>Rawat tanaman setiap hari dan jangan lupa menyiram.</li><li>Bangun hubungan dengan warga melalui obrolan dan hadiah.</li><li>Siapkan hewan dan latihan sebelum festival ternak.</li><li>Gunakan musim dingin untuk menambang, merapikan kebun, dan meningkatkan alat.</li></ul></div>
+<div class="panel small">Sumber isi: <b>Panduan Harvest Moon: Back To Nature Bahasa Indonesia</b>, Swandriya (versi 1.0, Januari 2014). Aplikasi fan-made, bukan produk resmi. Beberapa data panduan lama dapat berbeda antarversi game.</div>
+</section>
+
+<section id="daily" class="tab hidden">
+<div class="panel"><h1>Checklist Harian</h1><div class="row"><div><label>Tahun</label><select id="year"></select></div><div><label>Musim</label><select id="season"><option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option></select></div><div><label>Tanggal</label><select id="day"></select></div></div>
+<p class="muted">Checklist dasar dapat disesuaikan. Centang kegiatan yang sudah dilakukan.</p><div id="dailyProgress" class="progress"><i></i></div><p id="dailyCount" class="small"></p><div id="tasks"></div><label>Catatan hari ini</label><textarea id="notes" rows="3" placeholder="Contoh: hasil panen, hadiah, cuaca, kejadian..."></textarea><div class="row" style="margin-top:10px"><button class="action" onclick="saveDay()">Simpan hari</button><button class="action secondary" onclick="resetDay()">Reset checklist</button></div></div>
+</section>
+
+<section id="calendar" class="tab hidden">
+<div class="panel"><h1>Kalender 360 Hari</h1><div class="row"><div><label>Tahun</label><select id="calYear"></select></div><div><label>Musim</label><select id="calSeason"><option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option></select></div></div><p class="small">Hari berwarna emas memiliki festival atau catatan ulang tahun yang tersedia di panduan.</p><div class="daygrid" id="calendarGrid"></div><div id="dayInfo" class="item" style="margin-top:12px">Pilih tanggal untuk melihat detail.</div></div>
+</section>
+
+<section id="crops" class="tab hidden">
+<div class="panel"><h1>Referensi Tanaman</h1><p class="muted">Data berikut mengikuti tabel daur hidup panen pada PDF (halaman 68–71). PU = panen ulang; SP = sekali panen.</p><label>Filter musim</label><select id="cropSeason"><option value="all">Semua musim</option><option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option></select><div id="cropTable"></div></div>
+<div class="panel"><h2>Catatan bertani</h2><ul><li>Jangan lupa menyiram; panduan menyebut lupa menyiram membuat waktu tumbuh tidak tetap.</li><li>Setelah masa panen musim berakhir, gunakan palu untuk menggemburkan tanah sebelum mencangkul ulang.</li><li>Winter tidak menghasilkan panen di lahan biasa; rumah kaca memungkinkan tanaman ditanam sepanjang tahun.</li></ul></div>
+</section>
+
+<section id="events" class="tab hidden">
+<div class="panel"><h1>Festival & Event</h1><label>Filter musim</label><select id="eventSeason"><option value="all">Semua musim</option><option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option></select><div id="eventList" class="cardlist"></div></div>
+<div class="panel"><h2>Pengingat event musim panas</h2><p>Summer 1: Festival Berenang (Pantai); Summer 7: Sumo Ayam; Summer 12: Festival Tomat; Summer 20: Festival Sapi; Summer 24: Festival Kembang Api.</p></div>
+</section>
+
+<section id="people" class="tab hidden">
+<div class="panel"><h1>Penduduk & Hadiah</h1><p class="muted">Cuplikan informasi yang terbaca dari PDF. Tidak semua penduduk dan jadwal dimasukkan dalam versi awal.</p><div id="peopleList" class="cardlist"></div></div>
+</section>
+
+<section id="reference" class="tab hidden">
+<div class="panel"><h1>Referensi Kebun & Kota</h1><h2>Peralatan dan peningkatan</h2><table><tr><th>Peralatan</th><th>Harga / syarat</th><th>Fungsi</th></tr><tr><td>Brush / Sikat</td><td>800 G</td><td>Menyikat sapi, domba, dan kuda</td></tr><tr><td>Clipper</td><td>1.800 G</td><td>Mencukur bulu domba</td></tr><tr><td>Milker</td><td>2.000 G</td><td>Memerah susu sapi</td></tr><tr><td>Copper Tool</td><td>1.000 G + Copper Ore</td><td>Upgrade alat pertama</td></tr><tr><td>Silver Tool</td><td>2.000 G + Silver Ore</td><td>Upgrade alat kedua</td></tr><tr><td>Gold Tool</td><td>3.000 G + Gold Ore</td><td>Upgrade alat ketiga</td></tr><tr><td>Mystrile Tool</td><td>5.000 G + Mystrile Ore</td><td>Upgrade alat keempat</td></tr></table>
+<h2>Harga ternak dan perlengkapan</h2><table><tr><th>Barang</th><th>Harga</th></tr><tr><td>Ayam</td><td>1.500 G</td></tr><tr><td>Pakan ayam</td><td>10 G</td></tr><tr><td>Sapi</td><td>6.000 G</td></tr><tr><td>Domba</td><td>4.000 G</td></tr><tr><td>Pakan ternak</td><td>20 G</td></tr><tr><td>Obat ternak</td><td>1.000 G</td></tr><tr><td>Basket</td><td>5.000 G • kapasitas 30 hasil panen</td></tr><tr><td>Medium Rucksack</td><td>3.000 G • kapasitas 4</td></tr><tr><td>Large Rucksack</td><td>5.000 G • kapasitas 8</td></tr></table></div>
+<div class="panel"><h2>11 Power Berry</h2><ol><li>Menangkan 1.001 medali balap kuda, tukarkan di Mayor.</li><li>Memancing di laut dari dermaga.</li><li>Gali dengan cangkul di tambang dekat Hot Spring.</li><li>Di luar tambang musim dingin, pojok area (tekan X).</li><li>Di dalam tambang musim dingin.</li><li>Beli melalui TV Shopping seharga 5.000 G.</li><li>Menangkan Swimming Festival.</li><li>Biarkan pohon cedar di Mother’s Hill tetap hidup saat ia memohon untuk tidak ditebang.</li><li>Tanam lebih dari 90 bunga dan izinkan Anna memetiknya.</li><li>Beri Goddess hasil panen selama 5 hari berturut-turut melalui air terjun.</li><li>Special Berry: lempar 3 cucumber ke danau Mother’s Hill di depan dua pohon di sisi kiri.</li></ol></div>
+<div class="panel"><h2>Lokasi penting</h2><table><tr><th>Lokasi</th><th>Jam / catatan dari panduan</th></tr><tr><td>Supermarket</td><td>09.00–17.00; tutup Selasa dan Minggu</td></tr><tr><td>Saibara / Pandai Besi</td><td>10.00–16.00; tutup Kamis</td></tr><tr><td>Yodel Ranch</td><td>09.00–15.00; tutup Senin</td></tr><tr><td>Poultry Farm</td><td>12.00–16.00; tutup Minggu</td></tr><tr><td>Gotz / Penebang Kayu</td><td>11.00–17.00; tutup Minggu</td></tr><tr><td>Won Shop</td><td>13.00–16.00 di The Inn</td></tr><tr><td>Hot Spring</td><td>Tempat memulihkan stamina; telur dapat direbus menjadi Spa-Boiled Egg</td></tr><tr><td>Tambang musim dingin</td><td>Hanya dapat dimasuki saat Winter</td></tr></table></div>
+<div class="panel"><h2>Perluasan dari Gotz</h2><table><tr><th>Perluasan</th><th>Biaya</th><th>Kayu</th></tr><tr><td>Kandang ayam</td><td>5.000 G</td><td>420</td></tr><tr><td>Rumah pertama</td><td>4.700 G</td><td>370</td></tr><tr><td>Kandang sapi</td><td>6.800 G</td><td>500</td></tr><tr><td>Rumah kedua</td><td>10.000 G</td><td>750</td></tr><tr><td>Hothouse</td><td>30.000 G</td><td>580</td></tr></table></div>
+</section>
+
+<section id="goals" class="tab hidden">
+<div class="panel"><h1>Target Uang</h1><label>Saldo saat ini (G)</label><input id="money" type="number" min="0" value="0"><div class="row"><div><label>Target saldo</label><input id="target" type="number" min="0" value="10000"></div><div><label>Target tabungan per musim</label><input id="seasonTarget" type="number" min="0" value="5000"></div></div><button class="action" onclick="saveMoney()">Simpan saldo & target</button><div id="moneyProgress" style="margin-top:12px"></div></div>
+<div class="panel"><h2>Target kemajuan 3 tahun</h2><div id="goalChecks"></div></div>
+<div class="panel"><h2>Backup progres</h2><p class="small">Ekspor file JSON secara berkala agar progres dapat dipindahkan atau dipulihkan.</p><div class="row"><button class="action" onclick="exportData()">Ekspor backup</button><label class="action secondary" style="text-align:center;margin:0">Impor backup<input id="importFile" type="file" accept="application/json" style="display:none" onchange="importData(event)"></label></div><button class="action secondary" style="margin-top:10px;width:100%" onclick="clearAll()">Hapus semua progres</button></div>
+</section>
+<div class="footer">Dibuat sebagai companion PWA • Data tersimpan lokal pada browser perangkat</div>
+</main>
+<script>
+const seasons=["Spring","Summer","Fall","Winter"], KEY="btn_companion_pdf_v1";
+const crops=[
+["Spring","Turnip","Lobak",120,60,5,"SP","Supermarket"],["Spring","Potato","Kentang",150,80,8,"SP","Supermarket"],["Spring","Cucumber","Mentimun",200,100,10,"PU • 5 hari","Supermarket"],["Spring","Strawberry","Stroberi",150,30,9,"PU • 2 hari","Supermarket*"],["Spring","Cabbage","Kubis",500,250,15,"SP","Won"],["Spring","Grass","Rumput",500,"—",30,"Panen 10 hari","Supermarket"],
+["Summer","Corn","Jagung",300,100,15,"PU • 3 hari","Supermarket"],["Summer","Onion","Bawang",150,80,8,"SP","Supermarket"],["Summer","Pineapple","Nanas",1000,500,18,"PU • 5 hari","Won"],["Summer","Tomato","Tomat",200,60,8,"PU • 3 hari","Supermarket"],["Summer","Pumpkin","Labu",500,250,15,"SP","Won*"],["Summer","Pink Cat","Bunga Pink Cat",200,"—",6,"SP","Won"],
+["Fall","Carrot","Wortel",300,120,8,"SP","Supermarket"],["Fall","Eggplant","Terung",120,80,10,"PU • 3 hari","Supermarket"],["Fall","Green Pepper","Paprika hijau",150,40,8,"PU • 2 hari","Won"],["Fall","Spinach","Bayam",200,120,6,"SP","Supermarket"],["Fall","Sweet Potato","Ubi manis",300,120,6,"PU • 3 hari","Supermarket"],["Fall","Magic Red","Magic Red",600,200,10,"SP","Won"],
+["Winter","Orange Cup","Orange Cup",1000,60,9,"SP","Won • rumah kaca"]];
+const events=[
+["Spring",1,"Festival Tahun Baru","Alun-alun / The Inn","6:00 PM–7:50 PM","Pilih perayaan dengan warga yang belum dekat."],
+["Spring",8,"Goddess Festival","Rose Square","10:00 AM–2:50 PM","Ajak gadis dengan hati minimal ungu."],
+["Spring",14,"Thanksgiving Festival","Rumah warga","Seharian","Berikan makanan manis kepada gadis."],
+["Spring",18,"Lomba Balap Kuda","Rose Square","Siang","Tahun pertama kuda belum dapat didaftarkan; bisa bertaruh."],
+["Spring",22,"Cooking Festival","Rose Square","10:00 AM–2:50 PM","Bawa masakan dan berikan kepada Mayor Thomas."],
+["Summer",1,"Festival Berenang","Pantai","10:00 AM–2:50 PM","Pemenang memperoleh Power Berry."],
+["Summer",7,"Festival Sumo Ayam","Alun-alun","10:00 AM–2:50 PM","Bawa ayam yang menyukaimu; pemenang menghasilkan telur emas."],
+["Summer",12,"Festival Tomat","Alun-alun","10:00 AM–2:50 PM","Pilih tim untuk permainan lempar tomat."],
+["Summer",20,"Festival Sapi","Yodel Ranch","10:00 AM–2:50 PM","Daftarkan sapi dengan tingkat hati tinggi; pemenang menghasilkan Gold Milk."],
+["Summer",24,"Festival Kembang Api","Pantai","6:00 PM–7:50 PM","Ajak gadis untuk meningkatkan rasa sukanya."],
+["Fall",3,"Festival Musik","Gereja","6:00 PM–6:50 PM","Terima ajakan Pastor Carter sehari sebelumnya."],
+["Fall",9,"Harvest Festival","Rose Square","10:00 AM–2:50 PM","Bawa bahan makanan yang baik untuk sup bersama."],
+["Fall",13,"Festival Melihat Bulan","Puncak Mother’s Hill","6:00 PM–11:50 PM","Pergi bersama gadis yang paling menyukaimu."],
+["Fall",21,"Festival Domba","Yodel Ranch","10:00 AM–2:50 PM","Daftarkan domba dengan tingkat hati tinggi."],
+["Winter",10,"Dog Race Festival","Alun-alun","10:00 AM–2:50 PM","Anjing dewasa dan terlatih dapat dilombakan."],
+["Winter",14,"Winter Thanksgiving","Kebunmu","06:00 AM–03:00 PM","Gadis datang bergiliran memberi cokelat/kue cokelat."],
+["Winter",24,"Star Night Festival","Rumah keluarga gadis","6:00 PM–7:50 PM","Kunjungi keluarga gadis yang ingin kamu dekati."],
+["Winter",30,"New Year Eve","Puncak Mother’s Hill","12:00 AM–4:50 AM","Rayakan pergantian tahun di puncak gunung."]
+];
+const birthdays=[
+["Summer",3,"Popuri"],["Summer",6,"Cliff"],["Summer",11,"Basil"],["Summer",16,"Timid (Harvest Sprite)"],["Summer",17,"Ann"],["Summer",22,"Kai"],["Summer",27,"Thomas"],["Summer",29,"Zack"],
+["Spring",4,"Bold (Harvest Sprite)"],["Spring",15,"Staid (Harvest Sprite)"],["Spring",26,"Aqua (Harvest Sprite)"],
+["Fall",10,"Hoggy (Harvest Sprite)"],["Fall",17,"Doctor"],["Fall",20,"Carter"],["Fall",23,"Anna"],["Winter",19,"Won"]
+];
+const people=[
+["Basil","11 Summer","Sangat suka: bunga, Spa-Boiled Egg. Suka: hasil hutan.","Rumah Basil / AJA Winery"],
+["Cliff","6 Summer","Sangat suka: Rice Omelet, Spa-Boiled Egg. Suka: Apple, Bread, Cheese, Cake.","The Inn / Gereja; jadwal berubah bila bekerja di AJA Winery."],
+["Popuri","3 Summer","Sangat suka bunga; panduan menyebut Popuri mudah didekati dan suka diajak bicara.","Poultry Farm"],
+["Ann","17 Summer","Sangat suka: Spa-Boiled Egg, Apple Pie, Bamboo Rice, Sandwich.","The Inn"],
+["Kai","22 Summer","Ulang tahun Summer 22; pondoknya hanya buka selama Summer.","Pantai"],
+["Thomas","27 Summer","Ulang tahun Summer 27.","Rumah Mayor"]
+];
+let data=load();function load(){try{return JSON.parse(localStorage.getItem(KEY))||{days:{},money:0,target:10000,seasonTarget:5000,goals:{}}}catch(e){return {days:{},money:0,target:10000,seasonTarget:5000,goals:{}}}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));updateHome()}
+function dayKey(){return `${year.value}-${season.value}-${day.value}`}
+function showTab(id){document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("hidden",x.id!==id));document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));if(id==="calendar")renderCalendar();if(id==="crops")renderCrops();if(id==="events")renderEvents();if(id==="people")renderPeople();if(id==="goals")renderGoals();window.scrollTo(0,0)}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+function fillDays(sel){sel.innerHTML=Array.from({length:30},(_,i)=>`<option>${i+1}</option>`).join("")}
+[year,calYear].forEach(s=>s.innerHTML=[1,2,3].map(x=>`<option>${x}</option>`).join(""));fillDays(day);
+function getDay(){return data.days[dayKey()]||{checks:[],notes:""}}
+const baseTasks=["Siram semua tanaman","Panen tanaman yang sudah matang","Beri makan ayam / ternak","Ambil telur, susu, atau hasil ternak","Bicara dengan penduduk","Berikan hadiah kepada penduduk","Periksa cuaca dan kalender festival","Cari forage / memancing / menambang bila ada waktu"];
+function renderTasks(){let d=getDay();tasks.innerHTML=baseTasks.map((t,i)=>`<label class="check"><input type="checkbox" ${d.checks.includes(i)?"checked":""} onchange="toggleTask(${i},this.checked)"><span>${t}</span></label>`).join("");notes.value=d.notes||"";updateDailyProgress()}
+function toggleTask(i,v){let d=getDay();d.checks=d.checks||[];d.checks=v?[...new Set([...d.checks,i])]:d.checks.filter(x=>x!==i);data.days[dayKey()]=d;persist();updateDailyProgress()}
+function updateDailyProgress(){let d=getDay(),n=(d.checks||[]).length;dailyProgress.firstElementChild.style.width=(n/baseTasks.length*100)+"%";dailyCount.textContent=`${n} dari ${baseTasks.length} kegiatan selesai`}
+function saveDay(){let d=getDay();d.notes=notes.value;data.days[dayKey()]=d;persist();alert("Progres hari disimpan.")}
+function resetDay(){if(!confirm("Reset checklist tanggal ini?"))return;delete data.days[dayKey()];renderTasks();persist()}
+[year,season,day].forEach(x=>x.onchange=()=>{renderTasks();updateHome()});[calYear,calSeason].forEach(x=>x.onchange=renderCalendar);
+function renderCalendar(){let s=calSeason.value,y=+calYear.value;let labels=["Min","Sen","Sel","Rab","Kam","Jum","Sab"];calendarGrid.innerHTML=labels.map(x=>`<div class="small" style="text-align:center">${x}</div>`).join("");for(let n=1;n<=30;n++){let e=events.filter(x=>x[0]===s&&x[1]===n),b=birthdays.filter(x=>x[0]===s&&x[1]===n);let div=document.createElement("button");div.className="day"+((e.length||b.length)?" event":"");div.innerHTML=`<b>${n}</b>${e.length?`<small>🎉 ${e[0][2]}</small>`:""}${b.length?`<small>🎂 ${b.map(x=>x[2]).join(", ")}</small>`:""}`;div.onclick=()=>{document.querySelectorAll(".day").forEach(x=>x.classList.remove("selected"));div.classList.add("selected");dayInfo.innerHTML=`<strong>${s} ${n} • Tahun ${y}</strong>${e.map(x=>`<p>🎉 <b>${x[2]}</b><br>${x[3]} • ${x[4]}<br>${x[5]}</p>`).join("")}${b.map(x=>`<p>🎂 Ulang tahun: ${x[2]}</p>`).join("")}${!e.length&&!b.length?"<p>Tidak ada festival/ulang tahun yang tercantum di kalender PDF untuk tanggal ini.</p>":""}`};calendarGrid.appendChild(div)}}
+function renderCrops(){let s=cropSeason.value;let rows=crops.filter(c=>s==="all"||c[0]===s);cropTable.innerHTML=`<table><thead><tr><th>Tanaman</th><th>Benih</th><th>Jual</th><th>Tumbuh</th><th>Panen</th></tr></thead><tbody>${rows.map(c=>`<tr><td><b>${c[2]}</b><br><span class="small">${c[0]}</span></td><td>${c[3]} G<br><span class="small">${c[7]}</span></td><td>${c[4]} G</td><td>${c[5]} hari</td><td>${c[6]}</td></tr>`).join("")}</tbody></table><p class="small">* Benih khusus dapat memerlukan syarat penjualan hasil panen atau hanya tersedia melalui Won. Lihat PDF untuk catatan detail.</p>`}
+cropSeason.onchange=renderCrops;
+function renderEvents(){let s=eventSeason.value;let arr=events.filter(e=>s==="all"||e[0]===s);eventList.innerHTML=arr.map(e=>`<div class="item"><span class="pill">${e[0]} ${e[1]}</span><strong>${e[2]}</strong><p class="small">${e[3]} • ${e[4]}</p><p>${e[5]}</p></div>`).join("")}
+eventSeason.onchange=renderEvents;
+function renderPeople(){peopleList.innerHTML=people.map(p=>`<div class="item"><strong>${p[0]}</strong><p class="small">Ulang tahun: ${p[1]} • ${p[3]}</p><p>${p[2]}</p></div>`).join("")}
+function saveMoney(){data.money=+money.value||0;data.target=+target.value||0;data.seasonTarget=+seasonTarget.value||0;persist();renderGoals()}
+function renderGoals(){money.value=data.money||0;target.value=data.target||10000;seasonTarget.value=data.seasonTarget||5000;let pct=data.target?Math.min(100,data.money/data.target*100):0;moneyProgress.innerHTML=`<p><b>${(data.money||0).toLocaleString("id-ID")} G</b> dari target ${(data.target||0).toLocaleString("id-ID")} G (${pct.toFixed(1)}%)</p><div class="progress"><i style="width:${pct}%"></i></div>`;let goals=["Tahun 1: kebun mulai produktif dan mulai membangun hubungan dengan warga","Tahun 1: siapkan hewan untuk festival ternak","Tahun 2: tingkatkan rumah/kandang sesuai kebutuhan","Tahun 2: lanjutkan peningkatan alat dan hubungan warga","Tahun 3: pastikan kebun berkembang dan warga mengenalmu"];goalChecks.innerHTML=goals.map((g,i)=>`<label class="check"><input type="checkbox" ${data.goals[i]?"checked":""} onchange="data.goals[${i}]=this.checked;persist()"><span>${g}</span></label>`).join("")}
+function updateHome(){let y=year.value||1,s=season.value||"Spring",d=day.value||1;homeDay.textContent=`${s} ${d} • Tahun ${y}`;homeMoney.textContent=(data.money||0).toLocaleString("id-ID")+" G";let all=Object.values(data.days),done=all.reduce((a,x)=>a+(x.checks||[]).length,0),pct=Math.round(done/Math.max(1,all.length*baseTasks.length)*100);homeDone.textContent=pct+"%";let upcoming=events.find(e=>seasons.indexOf(e[0])>=seasons.indexOf(s)&&(e[0]!==s||e[1]>=+d));homeFestival.textContent=upcoming?`${upcoming[0]} ${upcoming[1]}: ${upcoming[2]}`:"Musim berikutnya"}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="BTN-Farm-Backup.json";a.click();URL.revokeObjectURL(a.href)}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.days)throw Error();data=x;persist();renderTasks();renderGoals();alert("Backup berhasil diimpor.")}catch(err){alert("File backup tidak valid.")}};r.readAsText(f)}
+function clearAll(){if(confirm("Hapus seluruh checklist, saldo, dan target? Tindakan ini tidak dapat dibatalkan.")){data={days:{},money:0,target:10000,seasonTarget:5000,goals:{}};persist();renderTasks();renderGoals()}}
+function updateControls(){year.value=1;season.value="Spring";day.value=1;calYear.value=1;calSeason.value="Spring"}
+updateControls();renderTasks();renderCalendar();renderCrops();renderEvents();renderPeople();renderGoals();updateHome();
+if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+</script></body></html>
