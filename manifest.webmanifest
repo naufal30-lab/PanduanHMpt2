@@ -1,11 +1,11 @@
 {
-  "name": "BTN Farm Companion - Panduan Harvest Moon",
-  "short_name": "BTN Companion",
+  "name": "BTN Farm Companion V2 - Ensiklopedia Penduduk",
+  "short_name": "BTN Companion V2",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#e9e1c6",
   "theme_color": "#315b3b",
-  "description": "Panduan Harvest Moon Back to Nature offline",
+  "description": "Panduan Harvest Moon Back to Nature offline dengan ensiklopedia penduduk",
   "icons": [
     {
       "src": "icon.svg",
